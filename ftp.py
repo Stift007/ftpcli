@@ -50,6 +50,7 @@ class FTPShell(cmd.Cmd):
         
     def do_ls(self, dirname=None):
         """List Directory"""
+        if not self.authorized:return print("Not connected")
         print(self.ftp.retrlines(f'LIST {dirname if dirname else ""}'))
 
     def do_cd(self, dirname="/"):
